@@ -47,3 +47,24 @@ Here is a short list of publications, mostly related to the theory by Logvinenko
 
 I do by no means claim above list to be a complete representation of the field.
 If there is other work you would like to see incorporated, kindly contact me.
+
+# Visualizing Underlying Geometric Concepts
+Here is a brief tutorial on the theory of metamer mismatching by Logvinenko as well as the geometric interpretation.
+
+Let us consider the following scenario:
+There is one human observer located indoors (1964 standard observer under CIE A) and one human observer located outdoors (1964 standard observer under CIE D65).
+It is an example to showcase the concept of illuminant induced metamer mismatching.
+The color matching functions of the human observer as well as the spectral power distributions of the illuminants are shown below.
+<p align="center">
+    <img src="data/figures/cmfandspd.png" />
+</p>
+
+The spectral power distribution of the light can be combined with the color matching functions to form spectral weights.
+The spectral weights associated with both viewing conditions are visualized in the following plots.
+<p align="center">
+    <img src="data/figures/spectral_weights.png" />
+</p>
+Spectral weights allow us to compute color signals when viewing an object. 
+The object is hereby given by its spectral object reflectance $`r(\lambda)`$. 
+
+$`\int \sigma(lambda) r(\lambda)`$
