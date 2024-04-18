@@ -85,7 +85,7 @@ The spectral weights associated with both viewing conditions are plotted below.
     <img src="data/figures/spectral_weights.png" />
 </p>
 Spectral weights allow us to compute color signals when viewing an object. 
-$\begin{pmatrix}X\\Y\\Z\end{pmatrix} = \int \sigma(\lambda) r(\lambda) d\lambda$
+$ \int \sigma(\lambda) r(\lambda) d\lambda$
 The object is hereby given by its spectral object reflectance, $r(\lambda)$. 
 
 
