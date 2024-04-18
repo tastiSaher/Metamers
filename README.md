@@ -3,7 +3,7 @@ This repository contains Python code on the topic of metamer mismatching, in par
 
 At the beginning of my research, almost all legacy code was only available in Matlab.
 My original motivation was to create a unified Python framework.
-Due to the lack of time, the project was abandoned after I left research.
+The project was abandoned after I left research.
 Due to various requests for the implementation of [1] and talks with fellow researchers, I decided to refactor and finally publish relevant parts of the codebase.
 A visual tutorial on the concept of metamer mismatching is also included.
 
@@ -13,10 +13,10 @@ If you find it useful or use it in your own research, kindly cite the associated
 My name is Tarek Luttermann (formerly Tarek Stiebel).
 I received my Dr.-Ing (Ph.D) in electrical engineering from RWTH Aachen University in 2021.
 During my time as a research scientist at the Institute of Imaging and Computer Vision, i was responsible for the field of multi-spectral imaging.
-This mainly covered various applications and projects in industry.
+This mainly covered various applications and projects in the area of industrial image processing.
 However, I also found interest in color science and, in particular, metamerism.
 
-Feel free to connect with me on LinkedIn if you want to discuss these topics.
+You are welcome to get in touch with me on LinkedIn if you would like to discuss further topics.
 
 ## Getting Started
 The class solver.OptimizeTangent allows you to calculate metamer mismatch bodies on your own.
@@ -86,7 +86,7 @@ The spectral weights associated with both viewing conditions are plotted below.
 </p>
 Spectral weights allow us to compute color signals when viewing an object. 
 
-$$(X,Y,Z) = \int \sigma_i(\lambda) r(\lambda) d\lambda$$
+$$(X,Y,Z)^T = \int \sigma_i(\lambda) r(\lambda) d\lambda$$
 
 The object is hereby given by its spectral object reflectance, $r(\lambda)$. 
 
@@ -108,7 +108,7 @@ This unified observer is again characterized by its spectral weights.
     <img src="data/figures/sw_unified.png" />
 </p>
 The next question we need to ask is what is the set of all color signals that the unified observer could possibly observer?
-This set is referred to as the *object color solid* (OCS).
+This set is referred to as the object color solid (OCS).
 <p align="center">
     <img src="data/figures/ocs2d.png" />
 </p>
@@ -129,7 +129,7 @@ The spectral weights can also be considered as a curve in space, as plotted on t
 The 2D space the spectral curve resides in can be split in half by any line through the origin.
 This line is uniquely defined by its normal vector.
 The intersections of the line with the spectral curve define the transition wavelength of a complementary pair of optimal reflectance functions.
-Respectively integrating the spectral curve on each of the half-spaces leads to two boundary points of the OCS (if they exist).
+Respectively integrating the spectral curve on each of the half-spaces leads to two boundary points of the OCS.
 The boundary points are furthermore characterized by the fact they are the intersection of a line tangent to the OCS having the same normal as we initially chose.
 <p align="center">
     <img src="data/gifs/ocs_construction.gif" />
@@ -142,8 +142,6 @@ In summary, a normal can be mapped to
 
 
 ### Algorithm for calculating the MMB
-Above concepts lay the foundation for various approaches to calculate an MMB.
-
 Start by estimating a point that is located inside the MMB. 
 This is a rather simple problem and we just assume its solution as granted. 
 It is then possible to sample the MMB boundary in arbitrary directions from the point inside the MMB.
@@ -151,7 +149,7 @@ In terms of our 2D example of metamer mismatching, it means that we want to find
 As previously touched on, it is possible to parametrize our boundary in terms of normal vectors.
 Any normal will map to a hyperplane tangent to the OCS.
 The hyperplane can then be intersected with our "search line".
-In order to find the boundary point it is necessary to minimize the distance from the point of intersection to the central point inside the MMB.
+In order to find the boundary point it is necessary to find the normal that minimizes the distance from the point of intersection to the central point inside the MMB.
 <p align="center">
     <img src="data/gifs/optim2d.gif" />
 </p>
