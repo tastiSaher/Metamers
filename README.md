@@ -86,14 +86,14 @@ The spectral weights associated with both viewing conditions are plotted below.
 </p>
 Spectral weights allow us to compute color signals when viewing an object. 
 
-$$\int \sigma(\lambda) r(\lambda) d\lambda$$
+$$(X,Y,Z) = \int \sigma_i(\lambda) r(\lambda) d\lambda$$
 
 The object is hereby given by its spectral object reflectance, $r(\lambda)$. 
 
 
 ## Object Color Solid
 Let us assume the first observer views the object $r(\lambda) = 0.5$.
-He would therefore observe the color signal (55.57, 50, 17.6)^T.
+He would therefore observe the color signal <nobr>(55.57, 50, 17.6)^T</nobr>.
 What is the set of color signals that the second observer could possibly observe?
 
 At the moment, we are considering two three-dimensional spaces, i.e. tristimuli to tristimuli. 
