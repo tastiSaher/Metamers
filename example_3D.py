@@ -2,8 +2,11 @@
 
 # standard
 import logging
+import os
 
 # misc
+import matplotlib
+matplotlib.use('Agg')
 import numpy as np
 import matplotlib.pyplot as plt
 from icosphere import icosphere
@@ -15,15 +18,18 @@ from utils import construct_ocs_3d
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
+   # logging.basicConfig(level=logging.INFO)
 
-    # ...   1.) construct some color mechanisms (simple example of illuminant induced metamer mismatching)
+    # ...   1.) construct some color mechanisms (simple example of illuminant
+    # induced metamer mismatching)
+    print('--- constructing color mechanisms')
     wls = data.wls
 
     cm_phi = data.cmf * data.il_A
     cm_psi = data.cmf * data.il_D65
 
     # normalize brightness to 100
+    print('--- normalizing color mechanisms')
     cm_phi = cm_phi / np.sum(cm_phi[1,:]) * 100
     cm_psi = cm_psi / np.sum(cm_psi[1,:]) * 100
 
@@ -35,14 +41,19 @@ if __name__ == "__main__":
             ylabel=r'spectral weights $\sigma_i(\lambda)$', title="1964 standard observer under CIE A")
     ax2.set(xlim=[data.wl_start, data.wl_end], xlabel='wavelength [nm]',
             ylabel=r'spectral weights $\sigma_i(\lambda)$', title="1964 standard observer under CIE D65")
-    plt.show()
+    
+    os.makedirs("output", exist_ok=True)
+    plt.savefig("output/output_3D_spectral_weights.png", bbox_inches='tight')
+    print("Saved spectral weights plot to output/output_3D_spectral_weights.png")
 
     # simulate a color signal
+    print('--- simulating color signal')
     n_samples = len(wls)
     r0 = np.array([0.5] * n_samples)
     phi0 = cm_phi @ r0
 
     # ...   2.) Calculate MMB
+    print('--- calculating MMB')
 
     # configure solver
     solver_MMB_ot = solver.OptimizeTangent(cm_phi=cm_phi, cm_psi=cm_psi)
@@ -58,6 +69,7 @@ if __name__ == "__main__":
     solver_MMB_ot.solve(phi0=phi0)
 
     # ...    3.) Draw results
+    print('drawing results')
 
     # get OCS boundary
     ocs_bounds = construct_ocs_3d(cm_psi, subd=5)
@@ -70,4 +82,9 @@ if __name__ == "__main__":
     tpsi = np.asarray(solver_MMB_ot.mmb_boundary_points)[:,3:]
     ax.scatter(tpsi[:, 0], tpsi[:, 1], tpsi[:, 2])
 
-    plt.show()
+    # If you're not using Docker, you can use plt.show to show MMB in a rotatable 3D object 
+    # plt.show
+    
+    # Otherwise save static image to a png
+    plt.savefig("output/output_3D_mmb.png", bbox_inches='tight')
+    print("Saved matamer mismatch body plot to output/output_3D_mmb.png")

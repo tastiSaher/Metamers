@@ -3,8 +3,11 @@
 # standard
 import logging
 import data
+import os
 
 # misc
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
@@ -57,7 +60,9 @@ if __name__ == "__main__":
     ax.grid(visible=True)
     ax.set(xlim=[-10, 110], ylim=[-10, 110], xlabel='Y under CIE A', ylabel=r'Y under CIE D65',)
 
-    plt.show()
+    os.makedirs("output", exist_ok=True)
+    plt.savefig("output/output_1D.png", bbox_inches='tight')
+    print("Plot saved to output/output_1D.png")
 
 
 

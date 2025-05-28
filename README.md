@@ -25,6 +25,34 @@ Examples on how to use and configure the solver are given in the following scrip
 * example_simple.py: 1d to 1d example that is also shown inside the tutorial section below
 * example_3D.py: 3D to 3D example of illuminant induced metamer mismatch (human standard observer from CIE A to CIE D65).
 
+## Running the Examples
+The examples can be run using a few different methods:
+
+* Locally using [`uv`](https://docs.astral.sh/uv/)
+
+    ```
+    uv sync --no-dev       # Create environment with proper version of python and all dependancies
+    uv run example_1D.py   # Run 1D example
+    uv run example_3D.py   # Run 3D example
+    ```  
+
+* Locally using `venv`+`pip`
+
+    ```
+    python3.11 -m venv .venv          # Create environment (Python 3.11 must be installed locally)
+    source .venv/bin/activate         # Activate the virtual environment
+    pip install --upgrade pip         # Upgrade pip inside the venv
+    pip install -r requirements.txt   # Install all dependancies
+    python example_1D.py              # Run 1D example via venv python interpreter
+    python example_3D.py              # Run 3D example via venv python interpreter
+    ```
+
+* Using [`Docker Desktop`](https://www.docker.com/products/docker-desktop/)
+
+    ```
+    docker compose run --rm metamers example_1D.py  # Run 1D example 
+    docker compose run --rm metamers example_3D.py  # Run 3D example 
+    ```
 
 #  Background
 Two objects are said to be *metameric*, if they lead to identical color signals although having different object reflectances.

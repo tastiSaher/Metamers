@@ -1,0 +1,10 @@
+services:
+  metamers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: metamers:latest
+    volumes:
+      - ./output:/app/output
+    entrypoint: ["uv","run"]
+    command: ["example_1D.py"]
